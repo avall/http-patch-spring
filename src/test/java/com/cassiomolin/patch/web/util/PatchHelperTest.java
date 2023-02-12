@@ -7,14 +7,18 @@ import com.cassiomolin.patch.domain.Phone;
 import com.cassiomolin.patch.domain.Work;
 import org.assertj.core.util.Lists;
 import org.assertj.core.util.Sets;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.json.*;
+import javax.json.Json;
+import javax.json.JsonMergePatch;
+import javax.json.JsonObject;
+import javax.json.JsonPatch;
+import javax.json.JsonValue;
 import javax.validation.Validator;
 import java.time.LocalDate;
 
@@ -23,7 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @Import({JacksonConfig.class, PatchHelper.class})
 public class PatchHelperTest {
 

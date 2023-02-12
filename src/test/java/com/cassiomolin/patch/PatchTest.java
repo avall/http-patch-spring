@@ -7,17 +7,22 @@ import com.cassiomolin.patch.service.ContactService;
 import com.cassiomolin.patch.web.PatchMediaType;
 import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.StreamUtils;
 
 import java.nio.charset.Charset;
@@ -30,7 +35,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @DirtiesContext
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class PatchTest {
 
@@ -40,7 +45,7 @@ public class PatchTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @Before
+    @BeforeEach
     public void setup() {
         restTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         setupTestData();
@@ -59,7 +64,7 @@ public class PatchTest {
         ResponseEntity<String> findResponse = findContact(id);
         assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         with(findResponse.getBody())
-                .assertThat("$.*", hasSize(6))
+                .assertThat("$.*", hasSize(11))
                 .assertThat("$.id", is(id.intValue()))
                 .assertThat("$.name", is("John W. Appleseed"))
                 .assertThat("$.work.*", hasSize(2))
@@ -69,7 +74,7 @@ public class PatchTest {
                 .assertThat("$.phones[0].*", hasSize(2))
                 .assertThat("$.phones[0].phone", is("1111111111"))
                 .assertThat("$.phones[0].type", is("work"))
-                .assertThat("$.phones[1].*", hasSize(1))
+                .assertThat("$.phones[1].*", hasSize(2))
                 .assertThat("$.phones[1].phone", is("2222222222"))
                 .assertThat("$.favorite", is(true));
     }
@@ -87,7 +92,7 @@ public class PatchTest {
         ResponseEntity<String> findResponse = findContact(id);
         assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         with(findResponse.getBody())
-                .assertThat("$.*", hasSize(6))
+                .assertThat("$.*", hasSize(11))
                 .assertThat("$.id", is(id.intValue()))
                 .assertThat("$.name", is("John W. Appleseed"))
                 .assertThat("$.work.*", hasSize(2))
@@ -97,7 +102,7 @@ public class PatchTest {
                 .assertThat("$.phones[0].*", hasSize(2))
                 .assertThat("$.phones[0].phone", is("1111111111"))
                 .assertThat("$.phones[0].type", is("work"))
-                .assertThat("$.phones[1].*", hasSize(1))
+                .assertThat("$.phones[1].*", hasSize(2))
                 .assertThat("$.phones[1].phone", is("2222222222"))
                 .assertThat("$.favorite", is(true));
     }
@@ -115,7 +120,7 @@ public class PatchTest {
         ResponseEntity<String> findResponse = findContact(id);
         assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         with(findResponse.getBody())
-                .assertThat("$.*", hasSize(6))
+                .assertThat("$.*", hasSize(11))
                 .assertThat("$.id", is(id.intValue()))
                 .assertThat("$.name", is("John W. Appleseed"))
                 .assertThat("$.work.*", hasSize(2))
@@ -125,7 +130,7 @@ public class PatchTest {
                 .assertThat("$.phones[0].*", hasSize(2))
                 .assertThat("$.phones[0].phone", is("1111111111"))
                 .assertThat("$.phones[0].type", is("work"))
-                .assertThat("$.phones[1].*", hasSize(1))
+                .assertThat("$.phones[1].*", hasSize(2))
                 .assertThat("$.phones[1].phone", is("2222222222"))
                 .assertThat("$.favorite", is(true));
     }

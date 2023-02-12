@@ -13,6 +13,7 @@ import javax.json.JsonPatch;
 import javax.json.JsonReader;
 import javax.json.JsonWriter;
 
+
 /**
  * HTTP message converter for {@link JsonPatch}.
  * <p>
