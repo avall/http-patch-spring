@@ -13,7 +13,7 @@ public class JacksonConfig {
     @Bean
     public ObjectMapper objectMapper() {
         return new ObjectMapper()
-//                .setDefaultPropertyInclusion(Include.NON_NULL)
+                .setDefaultPropertyInclusion(Include.NON_NULL)
                 .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 .findAndRegisterModules();

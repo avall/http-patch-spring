@@ -64,7 +64,7 @@ public class PatchTest {
         ResponseEntity<String> findResponse = findContact(id);
         assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         with(findResponse.getBody())
-                .assertThat("$.*", hasSize(11))
+                .assertThat("$.*", hasSize(8))
                 .assertThat("$.id", is(id.intValue()))
                 .assertThat("$.name", is("John W. Appleseed"))
                 .assertThat("$.work.*", hasSize(2))
@@ -74,7 +74,7 @@ public class PatchTest {
                 .assertThat("$.phones[0].*", hasSize(2))
                 .assertThat("$.phones[0].phone", is("1111111111"))
                 .assertThat("$.phones[0].type", is("work"))
-                .assertThat("$.phones[1].*", hasSize(2))
+                .assertThat("$.phones[1].*", hasSize(1))
                 .assertThat("$.phones[1].phone", is("2222222222"))
                 .assertThat("$.favorite", is(true));
     }
@@ -92,7 +92,7 @@ public class PatchTest {
         ResponseEntity<String> findResponse = findContact(id);
         assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         with(findResponse.getBody())
-                .assertThat("$.*", hasSize(11))
+                .assertThat("$.*", hasSize(8))
                 .assertThat("$.id", is(id.intValue()))
                 .assertThat("$.name", is("John W. Appleseed"))
                 .assertThat("$.work.*", hasSize(2))
@@ -102,7 +102,7 @@ public class PatchTest {
                 .assertThat("$.phones[0].*", hasSize(2))
                 .assertThat("$.phones[0].phone", is("1111111111"))
                 .assertThat("$.phones[0].type", is("work"))
-                .assertThat("$.phones[1].*", hasSize(2))
+                .assertThat("$.phones[1].*", hasSize(1))
                 .assertThat("$.phones[1].phone", is("2222222222"))
                 .assertThat("$.favorite", is(true));
     }
@@ -120,7 +120,7 @@ public class PatchTest {
         ResponseEntity<String> findResponse = findContact(id);
         assertThat(findResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
         with(findResponse.getBody())
-                .assertThat("$.*", hasSize(11))
+                .assertThat("$.*", hasSize(8))
                 .assertThat("$.id", is(id.intValue()))
                 .assertThat("$.name", is("John W. Appleseed"))
                 .assertThat("$.work.*", hasSize(2))
@@ -130,7 +130,7 @@ public class PatchTest {
                 .assertThat("$.phones[0].*", hasSize(2))
                 .assertThat("$.phones[0].phone", is("1111111111"))
                 .assertThat("$.phones[0].type", is("work"))
-                .assertThat("$.phones[1].*", hasSize(2))
+                .assertThat("$.phones[1].*", hasSize(1))
                 .assertThat("$.phones[1].phone", is("2222222222"))
                 .assertThat("$.favorite", is(true));
     }
